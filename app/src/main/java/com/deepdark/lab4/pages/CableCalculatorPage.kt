@@ -7,16 +7,19 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.deepdark.lab4.data.CableSelectionResult
+import com.deepdark.lab4.data.calculateCableSelection
+import com.deepdark.lab4.utils.roundTo
 
 @Composable
-fun Calculator1() {
+fun CableCalculatorPage() {
     var nominalVoltage by remember { mutableStateOf("10") }
-    var shortCircuitCurrent by remember { mutableStateOf("2.5") }
+    var shortCircuitCurrent by remember { mutableStateOf("2500") }
     var shortCircuitDuration by remember { mutableStateOf("2.5") }
     var calculatedLoad by remember { mutableStateOf("1300") }
     var operatingDuration by remember { mutableStateOf("4000") }
 
-    var result by remember { mutableStateOf<String?>(null) }
+    var result by remember { mutableStateOf<CableSelectionResult?>(null) }
 
     val scrollState = rememberScrollState()
 
@@ -63,7 +66,15 @@ fun Calculator1() {
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
-            onClick = {},
+            onClick = {
+                val voltage = nominalVoltage.toDoubleOrNull() ?: 0.0
+                val load = calculatedLoad.toDoubleOrNull() ?: 0.0
+                val current = shortCircuitCurrent.toDoubleOrNull() ?: 0.0
+                val sCDuration = shortCircuitDuration.toDoubleOrNull() ?: 0.0
+                val oDuration = operatingDuration.toIntOrNull() ?: 0
+
+                result = calculateCableSelection(voltage, load, current, sCDuration, oDuration)
+            },
             modifier = Modifier.fillMaxWidth()
         ) {
             Text("Розрахувати")
@@ -72,7 +83,10 @@ fun Calculator1() {
         Spacer(modifier = Modifier.height(16.dp))
 
         result?.let {
-            Text("Результати: $it")
+            Text("Розрахунковий струм для нормального режима: ${it.requiredCurrentCapacity.roundTo(1)} А")
+            Text("Розрахунковий струм для післяаварійного режима: ${it.emergencyCurrentCapacity.roundTo(1)} А")
+            Text("Економічний переріз кабелю: ${it.crossSectionArea.roundTo(1)} мм²")
+            Text("Переріз кабелю за термічною стійкістю: ${it.thermalStability.roundTo(1)} мм²")
         }
     }
 }

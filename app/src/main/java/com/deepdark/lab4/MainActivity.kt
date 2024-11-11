@@ -12,7 +12,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.deepdark.lab4.components.TopAppBar
-import com.deepdark.lab4.pages.Calculator1
+import com.deepdark.lab4.pages.CableCalculatorPage
 import com.deepdark.lab4.pages.Calculator2
 import com.deepdark.lab4.pages.Calculator3
 import com.deepdark.lab4.ui.theme.Lab4Theme
@@ -31,10 +31,10 @@ class MainActivity : ComponentActivity() {
                 ) { innerPadding ->
                     NavHost(
                         navController = navController,
-                        startDestination = "calculator1",
+                        startDestination = "CableCalculator",
                         Modifier.padding(innerPadding)
                     ) {
-                        composable("calculator1") { Calculator1() }
+                        composable("CableCalculator") { CableCalculatorPage() }
                         composable("calculator2") { Calculator2() }
                         composable("calculator3") { Calculator3() }
                     }
