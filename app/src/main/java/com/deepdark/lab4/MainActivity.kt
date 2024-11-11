@@ -7,10 +7,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.deepdark.lab4.components.TopAppBar
+import com.deepdark.lab4.pages.Calculator1
+import com.deepdark.lab4.pages.Calculator2
+import com.deepdark.lab4.pages.Calculator3
 import com.deepdark.lab4.ui.theme.Lab4Theme
 
 class MainActivity : ComponentActivity() {
@@ -19,29 +23,23 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Lab4Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                val navController = rememberNavController()
+
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    topBar = { TopAppBar(navController) }
+                ) { innerPadding ->
+                    NavHost(
+                        navController = navController,
+                        startDestination = "calculator1",
+                        Modifier.padding(innerPadding)
+                    ) {
+                        composable("calculator1") { Calculator1() }
+                        composable("calculator2") { Calculator2() }
+                        composable("calculator3") { Calculator3() }
+                    }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    Lab4Theme {
-        Greeting("Android")
     }
 }
