@@ -13,8 +13,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.deepdark.lab4.components.TopAppBar
 import com.deepdark.lab4.pages.CableCalculatorPage
-import com.deepdark.lab4.pages.Calculator2
 import com.deepdark.lab4.pages.Calculator3
+import com.deepdark.lab4.pages.ShortCircuitCurrentCalculatorPage
 import com.deepdark.lab4.ui.theme.Lab4Theme
 
 class MainActivity : ComponentActivity() {
@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
                         Modifier.padding(innerPadding)
                     ) {
                         composable("CableCalculator") { CableCalculatorPage() }
-                        composable("calculator2") { Calculator2() }
+                        composable("ShortCircuitCurrentCalculator") { ShortCircuitCurrentCalculatorPage() }
                         composable("calculator3") { Calculator3() }
                     }
                 }
