@@ -35,31 +35,31 @@ fun CableCalculatorPage() {
         OutlinedTextField(
             value = nominalVoltage,
             onValueChange = { nominalVoltage = it },
-            label = { Text("Номінальна напруга (кВ)") },
+            label = { Text("Номінальна напруга") },
             modifier = Modifier.fillMaxWidth()
         )
         OutlinedTextField(
             value = calculatedLoad,
             onValueChange = { calculatedLoad = it },
-            label = { Text("Розрахункове навантаження (кВА)") },
+            label = { Text("Розрахункове навантаження") },
             modifier = Modifier.fillMaxWidth()
         )
         OutlinedTextField(
             value = shortCircuitCurrent,
             onValueChange = { shortCircuitCurrent = it },
-            label = { Text("Струм короткого замикання (А)") },
+            label = { Text("Струм короткого замикання") },
             modifier = Modifier.fillMaxWidth()
         )
         OutlinedTextField(
             value = shortCircuitDuration,
             onValueChange = { shortCircuitDuration = it },
-            label = { Text("Час дії струму КЗ (с)") },
+            label = { Text("Час дії струму КЗ") },
             modifier = Modifier.fillMaxWidth()
         )
         OutlinedTextField(
             value = operatingDuration,
             onValueChange = { operatingDuration = it },
-            label = { Text("Розрахункова тривалість роботи (год)") },
+            label = { Text("Розрахункова тривалість роботи") },
             modifier = Modifier.fillMaxWidth()
         )
 

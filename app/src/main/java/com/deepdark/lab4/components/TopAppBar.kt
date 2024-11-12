@@ -19,7 +19,7 @@ fun TopAppBar(navController: NavController) {
             TextButton(onClick = { navController.navigate("ShortCircuitCurrentCalculator") }) {
                 Text("Завдання 2")
             }
-            TextButton(onClick = { navController.navigate("calculator3") }) {
+            TextButton(onClick = { navController.navigate("SubstationShortCircuitCalculator") }) {
                 Text("Завдання 3")
             }
         }
